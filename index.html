@@ -12,12 +12,14 @@
     :root {
       --bg: #f8f9fc;
       --card: #ffffff;
-      --accent: #1f4e79;
+      --accent: #0c2340;
+      --accent-hover: #1a3a5f;
       --accent-soft: #e8f0f7;
       --text-main: #1a1a1a;
       --text-muted: #4a5568;
       --border: #e2e8f0;
       --success: #10b981;
+      --gold: #c99700;
       --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.06);
       --shadow-md: 0 8px 24px rgba(15, 23, 42, 0.1);
       --shadow-lg: 0 20px 40px rgba(15, 23, 42, 0.15);
@@ -97,7 +99,7 @@
     }
 
     .btn-primary:hover {
-      background: #163a5f;
+      background: var(--accent-hover);
       transform: translateY(-1px);
       box-shadow: var(--shadow-md);
     }
@@ -106,14 +108,20 @@
       max-width: 1200px;
       margin: 0 auto;
       padding: 2rem 1.5rem;
+      animation: fadeIn 0.6s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     /* Hero Section */
     header {
-      background: linear-gradient(135deg, #1f4e79 0%, #2d5f8d 50%, #355c7d 100%);
+      background: linear-gradient(135deg, #0c2340 0%, #1a3a5f 50%, #2d5f8d 100%);
       color: white;
       padding: 3rem 2rem;
-      border-radius: 1rem;
+      border-radius: 1.25rem;
       margin-bottom: 2.5rem;
       box-shadow: var(--shadow-lg);
       position: relative;
@@ -123,11 +131,11 @@
     header::before {
       content: '';
       position: absolute;
-      top: 0;
-      right: 0;
-      width: 40%;
-      height: 100%;
-      background: linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.05) 100%);
+      top: -50%;
+      right: -10%;
+      width: 60%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
       pointer-events: none;
     }
 
@@ -142,16 +150,22 @@
 
     .status-badge {
       display: inline-block;
-      background: rgba(16, 185, 129, 0.15);
+      background: rgba(16, 185, 129, 0.2);
       color: #6ee7b7;
-      padding: 0.4rem 1rem;
+      padding: 0.5rem 1.2rem;
       border-radius: 999px;
       font-size: 0.8rem;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.05em;
       margin-bottom: 1rem;
-      border: 1px solid rgba(16, 185, 129, 0.3);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.8; }
     }
 
     .price-display {
@@ -196,11 +210,17 @@
     }
 
     .metric-card {
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.12);
       backdrop-filter: blur(10px);
       padding: 1rem;
       border-radius: 0.75rem;
       border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .metric-card:hover {
+      background: rgba(255, 255, 255, 0.18);
+      transform: translateY(-2px);
     }
 
     .metric-label {
@@ -218,9 +238,22 @@
 
     .hero-image-container {
       position: relative;
-      border-radius: 1rem;
+      border-radius: 1.25rem;
       overflow: hidden;
-      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+      transition: transform 0.3s ease;
+    }
+
+    .hero-image-container:hover {
+      transform: scale(1.02);
+    }
+
+    .hero-image-container::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.3) 0%, transparent 50%);
+      pointer-events: none;
     }
 
     .hero-image-container img {
@@ -264,15 +297,16 @@
 
     .card {
       background: var(--card);
-      border-radius: 1rem;
+      border-radius: 1.25rem;
       padding: 2rem;
       box-shadow: var(--shadow-sm);
       border: 1px solid var(--border);
-      transition: box-shadow 0.3s;
+      transition: all 0.3s ease;
     }
 
     .card:hover {
       box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
     }
 
     .card h3 {
@@ -352,9 +386,16 @@
 
     .info-pill {
       background: var(--accent-soft);
-      border-radius: 0.75rem;
-      padding: 1rem;
+      border-radius: 0.875rem;
+      padding: 1.25rem;
       border: 1px solid var(--border);
+      transition: all 0.3s ease;
+    }
+
+    .info-pill:hover {
+      background: #d4e6f7;
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-sm);
     }
 
     .info-pill-label {
@@ -427,8 +468,13 @@
 
     /* Contact Card */
     .contact-card {
-      background: linear-gradient(135deg, var(--accent-soft) 0%, white 100%);
+      background: linear-gradient(135deg, #f0f7ff 0%, white 100%);
       border: 2px solid var(--accent);
+      box-shadow: 0 8px 32px rgba(12, 35, 64, 0.12);
+    }
+
+    .contact-card:hover {
+      box-shadow: 0 12px 40px rgba(12, 35, 64, 0.18);
     }
 
     .agent-info {
@@ -526,16 +572,20 @@
 
     .gallery-item {
       position: relative;
-      border-radius: 0.75rem;
+      border-radius: 1rem;
       overflow: hidden;
       box-shadow: var(--shadow-sm);
-      transition: transform 0.3s, box-shadow 0.3s;
+      transition: all 0.3s ease;
       cursor: pointer;
     }
 
     .gallery-item:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-md);
+      transform: translateY(-8px);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+    }
+
+    .gallery-item:hover .gallery-caption {
+      background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.4));
     }
 
     .gallery-item img {
@@ -555,11 +605,12 @@
       bottom: 0;
       left: 0;
       right: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+      background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.3));
       color: white;
-      padding: 1rem;
-      font-size: 0.9rem;
-      font-weight: 500;
+      padding: 1.25rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
     }
 
     @media (max-width: 900px) {
